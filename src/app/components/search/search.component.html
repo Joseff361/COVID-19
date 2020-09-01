@@ -1,0 +1,73 @@
+<div class="container mt-5">
+    <div class="row">
+
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="mb-5 mt-3 text-center col-md-12">
+                                <h1><span class="badge badge-warning">Choose a Country</span></h1>
+                            </div>                
+                            <div class="col-md-8">
+                                <select  [(ngModel)]="selected" class="custom-select">
+                                    <option value="">Search country</option>
+                                    <option  *ngFor="let name of names">{{name}}</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <button class="btn btn-primary" (click)="Search()">Search</button>
+                            </div>
+                            <div *ngIf="show" class="col-md-12 mt-5">
+                                <p><i class="fa fa-globe" aria-hidden="true"></i>
+                                    <strong> Country: </strong>{{summarysCountry.Country}}</p>
+                                <p><i class="fa fa-code" aria-hidden="true"></i>
+                                    <strong> CountryCode: </strong>{{summarysCountry.CountryCode}}</p>
+                                <p><i class="fa fa-server" aria-hidden="true"></i>
+                                    <strong> Slug: </strong>{{summarysCountry.Slug}}</p>
+                                <p><i class="fa fa-check-circle" aria-hidden="true"></i>
+                                    <strong> NewConfirmed: </strong>{{summarysCountry.NewConfirmed}}</p>
+                                <p><i class="fa fa-check-circle-o" aria-hidden="true"></i>
+                                    <strong> TotalConfirmed: </strong>{{summarysCountry.TotalConfirmed}}</p>
+                                <p><i class="fa fa-times" aria-hidden="true"></i>
+                                    <strong> NewDeaths: </strong>{{summarysCountry.NewDeaths}}</p>
+                                <p><i class="fa fa-times-circle-o" aria-hidden="true"></i>
+                                    <strong> TotalDeaths: </strong>{{summarysCountry.TotalDeaths}}</p>
+                                <p><i class="fa fa-plus-square" aria-hidden="true"></i>
+                                    <strong> NewRecovered: </strong>{{summarysCountry.NewRecovered}}</p>
+                                <p><i class="fa fa-hospital-o" aria-hidden="true"></i>
+                                    <strong> TotalRecovered: </strong>{{summarysCountry.TotalRecovered}}</p>
+                                <p><i class="fa fa-calendar-o" aria-hidden="true"></i>
+                                    <strong> Date: </strong>{{summarysCountry.Date | date}}</p>
+                                <br><br>
+                                <div class="text-center mb-5">
+                                    <button class="btn btn-success"
+                                    (click)="onSelect(summarysCountry.Slug)"
+                                    >Show line chart</button>
+                                </div>
+                            </div>
+                            <div *ngIf="showSad" class="col-md-21 mt-5">
+                                <ngx-spinner 
+                                    bdColor = "rgba(0,0,0,0.6)" 
+                                    size = "default" 
+                                    color = "#fff" 
+                                    type = "square-jelly-box" 
+                                    [fullScreen] = "true">
+                                    <p style="color: white" > Loading... </p>
+                                </ngx-spinner>
+                                <h2 *ngIf="showReallySad"><i class="fa fa-frown-o" aria-hidden="true"></i>
+                                 Information not found</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-8">
+            <app-line-chart [slug]="selectedCountry"></app-line-chart>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,23 @@
+<div class="card" *ngIf="slug && show">
+    <div class="my-4 text-center col-md-12">
+        <h1><span class="badge badge-success">{{slug}}</span></h1>
+    </div>
+    <div class="card-body" >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <canvas baseChart width="400" height="400"
+                        [datasets]="lineChartData"
+                        [labels]="lineChartLabels"
+                        [options]="lineChartOptions"
+                        [colors]="lineChartColors"
+                        [legend]="lineChartLegend"
+                        [chartType]="lineChartType"
+                    ></canvas>
+                </div>
+            </div>
+        </div> 
+    </div>
+
+    
+</div>              
